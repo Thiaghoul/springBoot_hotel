@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,57 +19,46 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "TB_ROOM")
 public class RoomModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private enum RoomType{
-		SINGLE, COULPE, FAMILY
+	public enum RoomType{
+		SINGLE, COUPLE, FAMILY
 	};
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
-	@Column(nullable = false, unique = false)
+	@Column(nullable = false)
 	private int quantity;
 	
-	@Column(nullable = false, unique = false)
+	@JsonProperty("type")
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
 	private RoomType type;
 	
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
 	private Set<ReserveModel> reservs = new HashSet<ReserveModel>();
 	
+	@JsonProperty("hotel")
  	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "hotel_id", nullable = false)
 	private HotelModel hotel;
 	
-	public UUID getId() {
-		return id;
-	}
-	public void setId(UUID id) {
-		this.id = id;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public RoomType getType() {
-		return type;
-	}
-	public void setType(RoomType type) {
-		this.type = type;
-	}
-	public static long getSeriaversionuid() {
-		return serialVersionUID;
-	}
 	
 	
 	

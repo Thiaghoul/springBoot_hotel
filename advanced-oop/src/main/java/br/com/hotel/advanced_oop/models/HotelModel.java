@@ -14,7 +14,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "TB_HOTEL")
 public class HotelModel {
@@ -25,57 +33,18 @@ public class HotelModel {
 	
 	@Column(nullable = false, unique = true)
 	private String hotelName;
+	
+	@Column(nullable = false, unique = true)
 	private String address;
 	
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
 	private Set<EmployeeModel> employees = new HashSet<EmployeeModel>();
 	
-	
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
 	private Set<RoomModel> rooms = new HashSet<RoomModel>();
 
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public String getHotelName() {
-		return hotelName;
-	}
-
-	public void setHotelName(String hotelName) {
-		this.hotelName = hotelName;
-	}
-
-	public String getAdress() {
-		return address;
-	}
-
-	public void setAdress(String adress) {
-		this.address = adress;
-	}
-
-	public Set<EmployeeModel> getEmployees() {
-		return employees;
-	}
-
-	public void setEmployees(Set<EmployeeModel> employees) {
-		this.employees = employees;
-	}
-
-	public Set<RoomModel> getRooms() {
-		return rooms;
-	}
-
-	public void setRooms(Set<RoomModel> rooms) {
-		this.rooms = rooms;
-	}
-	
 	
 	
 
