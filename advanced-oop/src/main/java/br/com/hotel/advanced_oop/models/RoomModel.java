@@ -54,11 +54,11 @@ public class RoomModel implements Serializable{
 	@OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
 	private Set<ReserveModel> reservs = new HashSet<ReserveModel>();
 	
-	@JsonProperty("hotel")
- 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "hotel_id", nullable = false)
-	private HotelModel hotel;
-	
+//	@JsonProperty("hotel")
+// 	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "hotel_id", nullable = false)
+//	private HotelModel hotel;
+//	
 	
 	
 	

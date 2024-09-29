@@ -41,9 +41,9 @@ public class HotelModel {
 	@OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
 	private Set<EmployeeModel> employees = new HashSet<EmployeeModel>();
 	
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	@OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
-	private Set<RoomModel> rooms = new HashSet<RoomModel>();
+//	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//	@OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
+//	private Set<RoomModel> rooms = new HashSet<RoomModel>();
 
 	
 	

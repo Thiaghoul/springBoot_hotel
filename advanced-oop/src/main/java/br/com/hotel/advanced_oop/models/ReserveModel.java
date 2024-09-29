@@ -13,7 +13,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "TB_RESERVE")
 public class ReserveModel implements Serializable{
@@ -34,28 +38,6 @@ public class ReserveModel implements Serializable{
 	@JoinColumn(name = "guest_id")
 	private GuestModel guest;
 	
-	
-	public UUID getId() {
-		return id;
-	}
-	public void setId(UUID id) {
-		this.id = id;
-	}
-	public RoomModel getRoom() {
-		return room;
-	}
-	public void setRoom(RoomModel room) {
-		this.room = room;
-	}
-	public GuestModel getGuest() {
-		return guest;
-	}
-	public void setGuest(GuestModel guest) {
-		this.guest = guest;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
 	
 
